@@ -5,56 +5,54 @@
   href="{% static 'css/main/product_detail_page.css'%}"
 />
 
-<div class="page">
-  <div class="screen">
-    <div class="main">
-      <div class="body">
-        <div class="product_introduction">
-          <img src="{{product.image_url}}" style="width: 26.875rem; /* 430px */ height: 34.375rem; /* 550px */ border-radius: 0.5rem; /* 8px */ background-color: #D9D9D9;" class="rectangle"/>
-          <div class="product_introduction_2">
-            <div class="introduction">
-              <p class="text-font2 H3">셋별배송</p>
-              <div class="product_name"><p class="text-font1 TAEJUN">{{product.name}}</p></div>
-              <div class="product_discount">
-                <p class="text-red TAEJUN_2">{{product.discount_rate}}%</p>
-                <p id="product_price" class="text-font1 TAEJUN_2">{{product.discount_price}} 원</p>
-              </div>
-              <div class="line"></div>
-              <div class="product_notice">
-                <p class="text-font2 B2-bold" style="width: 8rem; /* 128px */">안내사항</p>
-                <p class="text-font1 B2">{{product.notice}}</p>
-              </div>
-              <div class="line"></div>
-              <div class="select_product">
-                <p class="text-font2 B2-bold" style="width: 8rem; /* 128px */">상품선택</p>
-                <div class="calc_select_product">
-                  <p class="text-font2 B2">{{product.name}}</p> <!--나중에 배울듯-->
-                  <div class="select_product_amount">
-                    <button id="product_amount_minus_btn" class="text-font1 B2-bold" style="width: 1.25rem; /* 20px */ text-align: center;">-</button>
-                    <p class="text-font1 B2-bold" id="product_amount" style="width: 2rem; /* 32px */ text-align: center;">0</p>
-                    <button id="product_amount_plus_btn" class="text-font1 B2-bold" style="width: 1.25rem; /* 20px */ text-align: center;">+</button>
-                  </div>
+<div class="screen">
+  <div class="main">
+    <div class="body">
+      <div class="product_introduction">
+        <img src="{{product.image_url}}" style="width: 26.875rem; /* 430px */ height: 34.375rem; /* 550px */ border-radius: 0.5rem; /* 8px */ background-color: #D9D9D9;" class="rectangle"/>
+        <div class="product_introduction_2">
+          <div class="introduction">
+            <p class="text-font2 H3">셋별배송</p>
+            <div class="product_name"><p class="text-font1 TAEJUN">{{product.name}}</p></div>
+            <div class="product_discount">
+              <p class="text-red TAEJUN_2">{{product.discount_rate}}%</p>
+              <p id="product_price" class="text-font1 TAEJUN_2">{{product.discount_price}} 원</p>
+            </div>
+            <div class="line"></div>
+            <div class="product_notice">
+              <p class="text-font2 B2-bold" style="width: 8rem; /* 128px */">안내사항</p>
+              <p class="text-font1 B2">{{product.notice}}</p>
+            </div>
+            <div class="line"></div>
+            <div class="select_product">
+              <p class="text-font2 B2-bold" style="width: 8rem; /* 128px */">상품선택</p>
+              <div class="calc_select_product">
+                <p class="text-font2 B2">{{product.name}}</p> <!--나중에 배울듯-->
+                <div class="select_product_amount">
+                  <button id="product_amount_minus_btn" class="text-font1 B2-bold" style="width: 1.25rem; /* 20px */ text-align: center;">-</button>
+                  <p class="text-font1 B2-bold" id="product_amount" style="width: 2rem; /* 32px */ text-align: center;">0</p>
+                  <button id="product_amount_plus_btn" class="text-font1 B2-bold" style="width: 1.25rem; /* 20px */ text-align: center;">+</button>
                 </div>
               </div>
-              <div class="line"></div>
             </div>
-            <div class="charge">
-              <div class="final_charge">
-                <div class="final_charge_2">
-                  <p class="B2" style="color: #000000;">총 상품 금액 : </p>
-                  <p id="final_chargement" class="TAEJUN_2">0 원</p>
-                </div>
+            <div class="line"></div>
+          </div>
+          <div class="charge">
+            <div class="final_charge">
+              <div class="final_charge_2">
+                <p class="B2" style="color: #000000;">총 상품 금액 : </p>
+                <p id="final_chargement" class="TAEJUN_2">0 원</p>
               </div>
-              <button class="register">
-                <p class="Btn" style="color: #FFF; text-align: center;">로그인</p>
-              </button>
             </div>
+            <button class="register">
+              <p class="Btn" style="color: #FFF; text-align: center;">로그인</p>
+            </button>
           </div>
         </div>
-  
-        <div class="review">
-          <!--후기섹션 추후-->
-        </div>
+      </div>
+
+      <div class="review">
+        <!--후기섹션 추후-->
       </div>
     </div>
   </div>

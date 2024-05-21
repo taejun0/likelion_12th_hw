@@ -64,14 +64,17 @@ const reset = () => {
 // filter 삭제 버튼
 const category_delete_skincare = () => {
   skincare.checked = false;
+  category_display();
 }
 
 const category_delete_luxury = () => {
   luxury.checked = false;
+  category_display();
 }
 
 const category_delete_snack = () => {
   snack.checked = false;
+  category_display();
 }
 
 
@@ -81,11 +84,8 @@ luxury.addEventListener('change', category_display);
 snack.addEventListener('change', category_display);
 reset_btn.addEventListener('click', reset);
 skincare_btn.addEventListener('click', category_delete_skincare);
-skincare_btn.addEventListener('click', category_display);
 luxury_btn.addEventListener('click', category_delete_luxury);
-luxury_btn.addEventListener('click', category_display);
 snack_btn.addEventListener('click', category_delete_snack);
-snack_btn.addEventListener('click', category_display);
 
 
 /*
