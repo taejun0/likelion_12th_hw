@@ -51,14 +51,74 @@
         </div>
       </div>
 
-      <div class="review">
-        <!--후기섹션 추후-->
+      <div class="product_comment">
+        <div class="H1 text-font1" style="padding-bottom: 1.875rem">상품후기</div>
+        <form action="create_comment/" method="post" class="product_comment_form">
+          {% csrf_token %}
+          <select name="star" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <div style="display: flex; width: 100%">
+            <textarea
+              placeholder="상품 후기를 남겨주세요"
+              name="content"
+              id="comment_textarea"
+            ></textarea>
+            <button
+              disabled
+              type="submit"
+              id="comment_submit"
+              class="monocolor text-white"
+            >
+              등록
+            </button>
+          </div>
+        </form> 
       </div>
     </div>
   </div>
 </div>
 
 
+<script src="{% static 'js/main/product_detail_page.js'%}"></script>
+
+<div class="screen2">
+  <div
+    style="
+      width: 1050px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px 0px;
+    "
+  >
+    {% for comment in comments %}
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 8px;
+        border-bottom: solid 1px #d9d9d9;
+      "
+    >
+      <div style="display: flex; justify-content: space-between">
+        <p>평점:{{comment.star}}</p>
+        <a href="{% url 'main:delete_comment' comment.id %}">삭제</a>
+      </div>
+      <p class="B1">{{comment.content}}</p>
+    </div>
+    {% endfor%}
+  </div>
+</div>
+{% endblock %}
+
+<input type="text" name="content" />
+<input type="submit" value="submit" />
 
 
 <!-- 코드 작성시, 아래 부분(endblock 이전)은 전체 삭제하고 작성하세요 -->
@@ -75,5 +135,3 @@
 <p>{{product.notice}}</p>
 데이터 사용 예시
 -->
-<script src="{% static 'js/main/product_detail_page.js'%}"></script>
-{% endblock %}

@@ -23,32 +23,30 @@ const category_display = () => {
   else{
     document.getElementById("filter").style.display = "";
     document.getElementById("reset_btn").style.color = "#999999"
-    for (var i = 0; i<checkboxes.length; i++){
-      if (skincare.checked == false) {
-        document.getElementById("filter_skincare").style.display = "none";
-      }
-      if (luxury.checked == false) {
-        document.getElementById("filter_luxury").style.display = "none";
-      }
-      if (snack.checked == false) {
-        document.getElementById("filter_snack").style.display = "none";
-      }
-      if (skincare.checked == true) {
-        document.getElementById("filter_skincare").style.display = "";
-        total += 68/3;
-      }
-      if (luxury.checked == true) {
-        document.getElementById("filter_luxury").style.display = "";
-        total += 24/3;
-      }
-      if (snack.checked == true) {
-        document.getElementById("filter_snack").style.display = "";
-        total += 28/3;
-      }
+
+    if (skincare.checked == false) {
+      document.getElementById("filter_skincare").style.display = "none";
     }
+    if (luxury.checked == false) {
+      document.getElementById("filter_luxury").style.display = "none";
+    }
+    if (snack.checked == false) {
+      document.getElementById("filter_snack").style.display = "none";
+    }
+    if (skincare.checked == true) {
+      document.getElementById("filter_skincare").style.display = "";
+      total += 68;
+    }
+    if (luxury.checked == true) {
+      document.getElementById("filter_luxury").style.display = "";
+      total += 24;
+    }
+    if (snack.checked == true) {
+      document.getElementById("filter_snack").style.display = "";
+      total += 28;
+    }
+    total_item.textContent = "총 "+total+"건";
   }
-  total = Math.round(total);
-  total_item.textContent = "총 "+total+"건";
 }
 
 // 카테고리 초기화 버튼
