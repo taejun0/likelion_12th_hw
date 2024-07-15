@@ -1,0 +1,27 @@
+/* css가 작동 안한다고요? 왜 그런지 이유를 찾아보세요. */
+
+body {
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mymove {
+  width: 100px;
+  height: 100px;
+  border: 1px solid orange;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-name: rotate;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

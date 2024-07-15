@@ -1,0 +1,75 @@
+<!-- 임시 로그인 페이지 -->
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/accounts/login.css'%}"
+/>
+
+<div class="screen">
+  <div class="main">
+    <div class="Body">
+      <form class="loginview" action="{% url 'accounts:login' %}" method="POST">
+        {% csrf_token %}
+        <p class="login_ko">로그인</p>
+        <div class="input_list">
+          <div class="login_input">
+            <input type="text" class="login_input_textarea B2" placeholder="아이디를 입력해주세요" name="username" id="username" required>
+          </div>
+          <div class="login_input">
+            <input type="password" class="login_input_textarea B2" placeholder="비밀번호를 입력해주세요" name="password" id="password" required>
+          </div>
+        </div>
+        <div class="find"> <!-- 추후 추가 찾기부분 -->
+          <a class="Caption font-font1" href="/">아이디 찾기</a>
+          <p class="Caption font-font1">|</p>
+          <a class="Caption font-font1" href="/">비밀번호 찾기</a>
+        </div>
+        <div class="btn_list">
+          <div class="login_btn" id="login_btn">
+            <button type="submit" style="color: #999;" class="Btn" id="login_input_btn" disabled>로그인</button>
+          </div>
+          <div class="signup_btn" id="signup_btn">
+            <a href="/accounts/signup/" style="color: #5E0080;" class="Btn">회원가입</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const id = document.getElementById("username");
+    const pw = document.getElementById("password");
+    const login_btn = document.getElementById("login_input_btn");
+    const login_btn_color = document.getElementById("login_btn");
+
+    id.addEventListener("input", (event) => {
+      if (id.value.trim().length > 0) {
+        login_btn_update();
+      }
+    });
+
+    pw.addEventListener("input", (event) => {
+      if (pw.value.trim().length > 0) {
+        login_btn_update();
+      }
+    });
+
+    const login_btn_update = () => {
+      if (id.value.trim().length > 0 && pw.value.trim().length > 0){
+        login_btn.disabled = false;
+        login_btn_color.style.backgroundColor = "#5E0080";
+        login_btn.style.color = "#fff";
+      }
+      else {
+        login_btn.disabled = true;
+        login_btn_color.style.backgroundColor = "#E2E2E2";
+        login_btn.style.color = "#999";
+      }
+    }
+  });
+</script>
+
+{% endblock %}

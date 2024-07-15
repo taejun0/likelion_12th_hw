@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/project.css' %}">
+
+<div>
+  <img src="{% static 'images/logo.png' %}" alt="logo" width="100px">
+  <h1 class="contents">2024 멋쟁이사자처럼 {{ generation }}기 오태준</h1>
+  <div class="contents">MTV 내용정리</div>
+  
+</div>
+
+<h3>Django란?</h3>
+<h4>파이썬으로 작성된 웹 애플리케이션 프레임워크</h4>
+
+<h3>HTML 페이지와 view 연결</h3>
+<ul>
+  <h4>views.py 에 함수 선언</h4>
+  <h4>urls.py 에 url에 해당하는 데이터 연결</h4>
+</ul>
+
+<h3>템플릿 변수</h3>
+<ul>
+  <h4>변수 {{변수명}}</h4>
+  <h4>변수의 속성 {{변수명.속성명}}</h4>
+  <h4>list의 각 인덱스 {{list.index}}</h4>
+  <h4>dict의 key값 {{dict.key}}</h4>
+</ul>
+
+<h3>템플릿 태그</h3>
+<h4>for문, if문 등의 반복문 조건문을 html 내에서 사용할 수 있게 함</h4>
+<ul>
+  <h4>if   for num in nums</h4>
+  <h4>else    num</h4>
+  <h4>endif  endfor</h4>
+</ul>
+
+<h3>탬플릿 상속</h3>
+<ul>
+  <h4>block : 다른 파일에서 재사용 가능한 html코드를 정의</h4>
+  <h4>block content : 재사용 가능한 블록 범위를 정의</h4>
+  <h4>endblock : 블록의 끝, 항상 'block content'와 짝을 이룸</h4>
+  <h4>setting.py를 통해 경로를 찾을 수 있게 설정해주어야함</h4>
+</ul>
+
+<h3>Static</h3>
+<ul>
+  <h4>load static : html에서 static 파일을 불러올 때 필수적으로 선언</h4>
+  <h4>setting.py를 통해 경로를 찾을 수 있게 설정해주어야함</h4>
+</ul>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/main/product_detail_page.css'%}"
+/>
+
+<div class="screen">
+  <div class="main">
+    <div class="body">
+      <div class="product_introduction">
+        <img src="{{product.image_url}}" style="width: 26.875rem; /* 430px */ height: 34.375rem; /* 550px */ border-radius: 0.5rem; /* 8px */ background-color: #D9D9D9;" class="rectangle"/>
+        <div class="product_introduction_2">
+          <div class="introduction">
+            <p class="text-font2 H3">셋별배송</p>
+            <div class="product_name"><p class="text-font1 TAEJUN">{{product.name}}</p></div>
+            <div class="product_discount">
+              <p class="text-red TAEJUN_2">{{product.discount_rate}}%</p>
+              <p id="product_price" class="text-font1 TAEJUN_2">{{product.discount_price}} 원</p>
+            </div>
+            <div class="line"></div>
+            <div class="product_notice">
+              <p class="text-font2 B2-bold" style="width: 8rem; /* 128px */">안내사항</p>
+              <p class="text-font1 B2">{{product.notice}}</p>
+            </div>
+            <div class="line"></div>
+            <div class="select_product">
+              <p class="text-font2 B2-bold" style="width: 8rem; /* 128px */">상품선택</p>
+              <div class="calc_select_product">
+                <p class="text-font2 B2">{{product.name}}</p> <!--나중에 배울듯-->
+                <div class="select_product_amount">
+                  <button id="product_amount_minus_btn" class="text-font1 B2-bold" style="width: 1.25rem; /* 20px */ text-align: center;">-</button>
+                  <p class="text-font1 B2-bold" id="product_amount" style="width: 2rem; /* 32px */ text-align: center;">0</p>
+                  <button id="product_amount_plus_btn" class="text-font1 B2-bold" style="width: 1.25rem; /* 20px */ text-align: center;">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+          </div>
+          <div class="charge">
+            <div class="final_charge">
+              <div class="final_charge_2">
+                <p class="B2" style="color: #000000;">총 상품 금액 : </p>
+                <p id="final_chargement" class="TAEJUN_2">0 원</p>
+              </div>
+            </div>
+            <button class="register">
+              <p class="Btn" style="color: #FFF; text-align: center;">로그인</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product_comment">
+        <div class="H1 text-font1" style="padding-bottom: 1.875rem">상품후기</div>
+        <form action="create_comment/" method="post" class="product_comment_form">
+          {% csrf_token %}
+          <select name="star" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <div style="display: flex; width: 100%">
+            <textarea
+              placeholder="상품 후기를 남겨주세요"
+              name="content"
+              id="comment_textarea"
+            ></textarea>
+            <button
+              disabled
+              type="submit"
+              id="comment_submit"
+              class="monocolor text-white"
+            >
+              등록
+            </button>
+          </div>
+        </form> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="{% static 'js/main/product_detail_page.js'%}"></script>
+
+<div class="screen2">
+  <div
+    style="
+      width: 1050px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px 0px;
+    "
+  >
+    {% for comment in comments %}
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 8px;
+        border-bottom: solid 1px #d9d9d9;
+      "
+    >
+      <div style="display: flex; justify-content: space-between">
+        <p>평점:{{comment.star}}</p>
+        <a href="{% url 'main:delete_comment' comment.id %}">삭제</a>
+      </div>
+      <p class="B1">{{comment.content}}</p>
+    </div>
+    {% endfor%}
+  </div>
+</div>
+{% endblock %}
+
+<input type="text" name="content" />
+<input type="submit" value="submit" />
+
+
+<!-- 코드 작성시, 아래 부분(endblock 이전)은 전체 삭제하고 작성하세요 -->
+
+<!----------------tip!---------------->
+<!-- 상품 데이터베이스는 프로젝트에 넣어뒀어요 -->
+<!-- 아래와 같은 형식으로 사용하세요 -->
+
+<!-- 데이터 사용 예시 -->
+<!--<img src="{{product.image_url}}" style="width: 100px" />
+<p>{{product.name}}</p>
+<p>{{product.discount_rate}}%</p>
+<p>{{product.discount_price}} 원</p>
+<p>{{product.notice}}</p>
+데이터 사용 예시
+-->

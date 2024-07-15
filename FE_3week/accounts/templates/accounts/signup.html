@@ -1,0 +1,104 @@
+<!-- 임시 회원가입 페이지 -->
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/accounts/signup.css'%}"
+/>
+
+<div class="screen">
+  <div class="main">
+    <div class="Body">
+      <form class="signupview" action="{% url 'accounts:signup' %}" method="POST">
+        {% csrf_token %}
+        <p class="signup_ko">회원가입</p>
+        <hr class="hr_1">
+        <div class="input_list">
+          <div class="signup_input">
+            <p class="signup_text B2-bold text-black">아이디</p>
+            <div class="signup_input_id">
+              <input type="text" class="signup_input_textarea B2" placeholder="아이디를 입력해주세요" name="username" id="username" required>
+            </div>
+          </div>
+          <div class="signup_input">
+            <p class="signup_text B2-bold text-black">비밀번호</p>
+            <div class="signup_input_password">
+              <input type="password" class="signup_input_textarea B2" placeholder="비밀번호를 입력해주세요" name="password" id="password" required>
+              <ul class="font1">
+                <li>⋅ 비밀번호를 8자 이상으로 작성해주세요.</li>
+                <li>⋅ 영문 대소문자, 숫자, 특수문자를 하나 이상포함해주세요.</li>
+                <li>⋅ 사용가능 특수문자 @!?-_</li>
+              </ul>
+            </div>
+          </div>
+          <div class="signup_input">
+            <p class="signup_text B2-bold text-black">비밀번호 확인</p>
+            <div class="signup_input_password">
+              <input type="password" class="signup_input_textarea B2" placeholder="비밀번호를 한번 더 입력해주세요" name="password2" id="password2" required>
+              <p class="text-red Caption" id="password_not_right">비밀번호가 일치하지 않습니다!</p>
+            </div>
+          </div>
+        </div>
+        <hr class="hr_2">
+          <div class="signup_btn" id="signup_btn">
+            <button type="submit" class="signup_input_btn font-font2 Btn" id="signup_input_btn" disabled>가입하기</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const id = document.getElementById("username");
+    const pw1 = document.getElementById("password");
+    const pw2 = document.getElementById("password2");
+    const sign_btn = document.getElementById("signup_input_btn");
+    const sign_btn_color = document.getElementById("signup_btn");
+    const password_not_right = document.getElementById("password_not_right");
+    
+    var passwordRegex = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[@!?_-]).{8,}$/;
+
+    id.addEventListener("input", (event) => {
+      if (id.value.trim().length > 0) {
+        sign_btn_update();
+      }
+    });
+
+    pw1.addEventListener("input", (event) => {
+      if (pw1.value.trim().length > 0) {
+        sign_btn_update();
+      }
+    });
+
+    pw2.addEventListener("input", (event) => {
+      if (pw2.value.trim().length > 0) {
+        sign_btn_update();
+      }
+    });
+
+    const sign_btn_update = () => { // 비밀번호가 같은 상태에서 아이디를 지웠을 때 false로 변하지 않는 문제 발견.
+      if (id.value.trim().length > 0 && pw1.value == pw2.value && passwordRegex.test(pw1.value) == true){
+        sign_btn.disabled = false;
+        sign_btn_color.style.backgroundColor = "#5E0080";
+        sign_btn.style.color = "#fff"
+        password_not_right.style.display = "none";
+        
+      } // 비밀번호 같고 길이도 길고 조건도 충족
+      else if (pw1.value == pw2.value){
+        sign_btn.disabled = true;
+        sign_btn_color.style.backgroundColor = "#E2E2E2";
+        sign_btn.style.color = "#999";
+        password_not_right.style.display = "none";
+      }
+      else {
+        sign_btn.disabled = true;
+        sign_btn_color.style.backgroundColor = "#E2E2E2";
+        sign_btn.style.color = "#999";
+        password_not_right.style.display = "";
+      }
+    }
+  });
+</script>
+
+{% endblock %}

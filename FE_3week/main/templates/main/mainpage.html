@@ -1,0 +1,180 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!-- css 파일 -->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/main/main_page.css'%}"
+/>
+
+
+<div class="screen">
+  <div class="main text-white">
+    <div class="tag text-font1">
+      <div class="tag2 T1" id="tag2">
+        <a href="/">인기신상랭킹</a>
+        <a>입점특가</a>
+        <a>간편한끼</a>
+        <a>요즘간식</a>
+        <a>주방﹒리빙</a>
+        <a>뷰티</a>
+        <a>패션﹒잡화</a>
+      </div>
+    </div>
+  
+    <div class="body">
+      <div class="category_navbar">
+        <div class="head">
+          <a class="text-font1 H3">필터</a>
+          <button class="reset_btn text-font3" id="reset_btn">
+            <a class="reset_btn_2" id="reset_btn_2">
+              <img class="icon-20 icon-color-1" src="{% static 'assets/icons/reset.svg' %}"/>
+            </a>
+            <a class="H3" style="margin-top: 0.1rem;">초기화</a>
+          </button>
+        </div>
+        <div class="category_list">
+          <div class="category_list_head">
+            <a class="H3 text-font1">카테고리</a>
+            <a class="reset_btn_2">
+              <img class="icon-20 icon-color-2" src="{% static 'assets/icons/up.svg' %}"/>
+            </a>
+          </div>
+          <div class="category_list_content">
+            <div class="sidebarnav">
+              <label for="skincare"><input type="checkbox" name="category_check_group" id="skincare"/></label>
+              <a class="Btn-sidnav text-font1">스킨케어﹒메이크업</a>
+              <a class="Caption text-font3">68</a>
+            </div>
+            <div class="sidebarnav">
+              <label for="luxury"><input type="checkbox" name="category_check_group" id="luxury"/></label>
+              <a class="Btn-sidnav text-font1">럭셔리뷰티</a>
+              <a class="Caption text-font3">24</a>
+            </div>
+            <div class="sidebarnav">
+              <label for="snack"><input type="checkbox" name="category_check_group" id="snack"/></label>
+              <a class="Btn-sidnav text-font1">간식﹒과자﹒떡</a>
+              <a class="Caption text-font3">28</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="item">
+        <div class="sortingbar">
+          <a class="text-font1 H3" id="total_item">총 508건</a>
+          <div class="sortingMenu">
+            <a class="text-font1 H3">추천순</a>
+            <hr class="line"></hr>
+            <a class="text-font1 H3">신상품순</a>
+            <hr class="line"></hr>
+            <a class="text-font1 H3">판매량순</a>
+            <hr class="line"></hr>
+            <a class="text-font1 H3">혜택순</a>
+            <hr class="line"></hr>
+            <a class="text-font1 H3">낮은 가격순</a>
+            <hr class="line"></hr>
+            <a class="text-font1 H3">높은 가격순</a>
+          </div>
+        </div>
+        <div class="category_filter" id="filter" style="display: none;">
+          <div class="category_filter_selected">
+            <div id="filter_skincare">
+              <a class="text-main B2">스킨케어﹒메이크업</a>
+              <button id="skincare_btn">
+                <img class="icon-20 icon-color-3" src="{% static 'assets/icons/close.svg' %}"/>
+              </button>
+            </div>
+            <div id="filter_luxury">
+              <a class="text-main B2" id="filter_luxury">럭셔리뷰티</a>
+              <button id="luxury_btn">
+                <img class="icon-20 icon-color-3" src="{% static 'assets/icons/close.svg' %}"/>
+              </button>
+            </div>
+            <div id="filter_snack">
+              <a class="text-main B2">간식﹒과자﹒떡</a>
+              <button id="snack_btn">
+                <img class="icon-20 icon-color-3" src="{% static 'assets/icons/close.svg' %}"/>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="itemlist">
+          {% for product in products %}
+          <div class="productcard" style="width: 15.562rem; /* 249px */;">
+            <a href="product/{{product.id}}">
+              <img src="{{product.image_url}}" class="rectangle"/>
+              <div class="item_select">
+                <a>
+                  <img class="icon-20 icon-color-4" src="{% static 'assets/icons/cart.svg' %}"/>
+                </a>
+                <a class="text-font1 Btn">담기</a>
+              </div>
+              <div class="item_explain">
+                <div class="item_explain-1">
+                  <a class="text-font2 B2">샛별배송</a>
+                </div>
+                <div class="item_explain-2">
+                  <a class="text-font1 B1 flexing">{{product}}</a>
+                </div>
+                <div class="item_explain-3">
+                  <a class="text-font2 Caption flexing">{{product.description}}</a>
+                </div>
+                <div class="item_explain-4">
+                  <a class="text-font2 decoline">{{product.origin_price}}원</a>
+                  <div class="cost">
+                    <a class="B1-bold text-red">{{product.discount_rate}}%</a>
+                    <a class="text-font1 B1-bold">{{product.discount_price}} 원</a>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- js 파일 -->
+<script src="{% static 'js/main/main_page.js'%}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname;
+
+    const tag2menu = document.getElementById("tag2");
+    const tag2list = tag2menu.children;
+
+    Array.from(tag2list).forEach(function (menu) {
+      if (menu.href == "http://127.0.0.1:8000" + currentPath) {
+        menu.style.color = "#5e0080";
+      }
+    });
+  });
+</script>
+{% endblock %}
+
+
+
+<!-- 코드 작성시, 아래 부분(script 태그 이전)은 전체 삭제하고 작성하세요 -->
+
+<!----------------tip!---------------->
+<!-- 상품 데이터베이스는 프로젝트에 넣어뒀어요 -->
+<!-- 아래와 같은 형식으로 for문을 사용하여 작성하세요 -->
+
+<!-- 데이터 사용 예시 -->
+<!--<div style="display: flex">
+  {% for product in products %}
+  <a href="product/{{product.id}}">
+    <img src="{{product.image_url}}" style="width: 100px" />
+    <p>{{product}}</p>
+    <p>{{product.description}}</p>
+    <p>{{product.origin_price}}원</p>
+    <p>{{product.discount_rate}}%</p>
+    <p>{{product.discount_price}}원</p>
+  </a>
+  {% endfor %}
+</div>
+데이터 사용 예시 -->
